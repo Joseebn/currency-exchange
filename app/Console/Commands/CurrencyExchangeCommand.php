@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use App\Services\ApiFixerServices;
+//use Carbon\Carbon;
 
 class CurrencyExchangeCommand extends Command
 {
@@ -40,13 +41,16 @@ class CurrencyExchangeCommand extends Command
     public function handle(ApiFixerServices $apiFixerServices)
     {
         $currencyExchange = $this->currencyExchange($apiFixerServices);
-        foreach ($currencyExchange->rates as $key => $value) {
-            var_dump('1 ' . $currencyExchange->base . ' = ' . $value . ' ' . $key);
+
+        if ($this->argument('type') == 'latest') {
+            dd('Guardar en base de datos');
         }
+
+        return $currencyExchange->success;
     }
 
 
-    private function currencyExchange($apiFixerServices) {
+    public function currencyExchange($apiFixerServices) {
     	$params = [
     		'base' => 'EUR',
     		//'symbols' => 'USD,CAD,GBP,JPY,CNY,INR,AUD,HKD,SGD' // tirar de base de datos
