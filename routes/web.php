@@ -14,8 +14,8 @@
 */
 
 $router->get('/', function () use ($router) {
-    //return $router->app->version();
-    return 'hola mundo';
+    return $router->app->version();
+    //return 'hola mundo';
 });
 
 $router->get('/users', function () use ($router) {
