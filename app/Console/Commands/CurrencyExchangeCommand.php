@@ -41,7 +41,7 @@ class CurrencyExchangeCommand extends Command
     public function handle(ApiFixerServices $apiFixerServices)
     {
         $currencyExchange = $this->currencyExchange($apiFixerServices);
-
+dd($currencyExchange);
         if ($this->argument('type') == 'latest') {
             dd('Guardar en base de datos');
         }

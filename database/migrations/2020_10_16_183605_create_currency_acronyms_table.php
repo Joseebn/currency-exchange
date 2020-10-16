@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUsersTable extends Migration
+class CreateCurrencyAcronymsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,14 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('currency_acronyms', function (Blueprint $table) {
             $table->id();
-            $table->string('username')->unique();
-            $table->string('password', 60);
-            $table->string('api_token', 60)->unique();
-            $table->boolean('status');
+            $table->string('acronym', 6);
+            $table->string('name', 60);
+            $table->string('human_name_sp', 60);
+            $table->string('human_name_pt', 60);
+            $table->string('human_name_en', 60);
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 
@@ -31,6 +31,6 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('currency_acronyms');
     }
 }
