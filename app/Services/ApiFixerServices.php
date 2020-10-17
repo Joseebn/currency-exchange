@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Services;
 
 use GuzzleHttp\Client;
@@ -13,7 +14,7 @@ class ApiFixerServices
 		$this->client = $client;
 	}
 
-	public function getCurrency($method, $params)
+	public function getCurrency($method, array $params)
 	{
 		$this->key = env('API_KEY_FIXER');
 		

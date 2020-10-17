@@ -4,7 +4,7 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use App\Services\ApiFixerServices;
-//use Carbon\Carbon;
+use App\Services\CurrencyRatesServices;
 
 class CurrencyExchangeCommand extends Command
 {
@@ -27,9 +27,11 @@ class CurrencyExchangeCommand extends Command
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(ApiFixerServices $apiFixerServices, CurrencyRatesServices $currencyRatesServices)
     {
         parent::__construct();
+        $this->apiFixerServices = $apiFixerServices;
+        $this->currencyRatesServices = $currencyRatesServices;
     }
 
     /**
@@ -38,23 +40,22 @@ class CurrencyExchangeCommand extends Command
      * @param  \App\Support\DripEmailer  $drip
      * @return mixed
      */
-    public function handle(ApiFixerServices $apiFixerServices)
+    public function handle()
     {
-        $currencyExchange = $this->currencyExchange($apiFixerServices);
-dd($currencyExchange);
+        $currencyExchange = $this->currencyExchange();
+
         if ($this->argument('type') == 'latest') {
-            dd('Guardar en base de datos');
+            $this->currencyRatesServices->saveLastCurrencyExchange($currencyExchange);
         }
 
         return $currencyExchange->success;
     }
 
 
-    public function currencyExchange($apiFixerServices) {
+    public function currencyExchange() {
     	$params = [
     		'base' => 'EUR',
-    		//'symbols' => 'USD,CAD,GBP,JPY,CNY,INR,AUD,HKD,SGD' // tirar de base de datos
     	];
-    	return $apiFixerServices->getCurrency($this->argument('type'), $params);
+    	return $this->apiFixerServices->getCurrency($this->argument('type'), $params);
     }
 }

@@ -20,6 +20,8 @@ class CreateCurrencyAcronymsTable extends Migration
             $table->string('human_name_sp', 60);
             $table->string('human_name_pt', 60);
             $table->string('human_name_en', 60);
+            $table->string('country', 60)->nullable();
+            $table->string('flag', 60)->nullable();
             $table->timestamps();
         });
     }

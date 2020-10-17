@@ -16,7 +16,7 @@ class CurrencyAcronym extends Model
      * @var array
      */
     protected $fillable = [
-        'acronym', 'name', 'human_name_sp', 'human_name_pt', 'human_name_en'
+        'acronym', 'name', 'human_name_sp', 'human_name_pt', 'human_name_en', 'country', 'flag'
     ];
 
     public function weeklyBaseCoin()
