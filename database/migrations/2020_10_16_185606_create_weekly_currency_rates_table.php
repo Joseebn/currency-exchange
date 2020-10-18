@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateHistoricalCurrencyRates extends Migration
+class CreateWeeklyCurrencyRatesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateHistoricalCurrencyRates extends Migration
      */
     public function up()
     {
-        Schema::create('historical_currency_rates', function (Blueprint $table) {
+        Schema::create('weekly_currency_rates', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('base_coin_id');
             $table->foreign('base_coin_id')->references('id')->on('currency_acronyms');
@@ -32,6 +32,6 @@ class CreateHistoricalCurrencyRates extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('historical_currency_rates');
+        Schema::dropIfExists('weekly_currency_rates');
     }
 }

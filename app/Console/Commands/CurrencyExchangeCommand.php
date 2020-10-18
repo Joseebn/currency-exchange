@@ -4,7 +4,7 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use App\Services\ApiFixerServices;
-use App\Services\CurrencyRatesServices;
+use App\Services\CurrencyServices;
 
 class CurrencyExchangeCommand extends Command
 {
@@ -27,11 +27,11 @@ class CurrencyExchangeCommand extends Command
      *
      * @return void
      */
-    public function __construct(ApiFixerServices $apiFixerServices, CurrencyRatesServices $currencyRatesServices)
+    public function __construct(ApiFixerServices $apiFixerServices, CurrencyServices $currencyServices)
     {
         parent::__construct();
         $this->apiFixerServices = $apiFixerServices;
-        $this->currencyRatesServices = $currencyRatesServices;
+        $this->currencyServices = $currencyServices;
     }
 
     /**
@@ -45,7 +45,7 @@ class CurrencyExchangeCommand extends Command
         $currencyExchange = $this->currencyExchange();
 
         if ($this->argument('type') == 'latest') {
-            $this->currencyRatesServices->saveLastCurrencyExchange($currencyExchange);
+            $this->currencyServices->saveLastCurrencyExchange($currencyExchange);
         }
 
         return $currencyExchange->success;

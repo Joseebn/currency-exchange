@@ -31,15 +31,15 @@ class CurrencyAcronymSeeder extends Seeder
     public function getCoins()
     {
     	return [
-    		'EUR' => [
-				'acronym' => 'EUR', 
-				'name' => 'Euro', 
-				'human_name_sp' => 'Euro', 
-				'human_name_pt' => 'Euro', 
-				'human_name_en' => 'Euro',
-				'country' => 'European Union',
-				'flag' => null
-    		],
-    	];
+            'EUR' => [
+                'acronym' => 'EUR', 
+                'name' => 'Euro', 
+                'human_name_sp' => 'Euro', 
+                'human_name_pt' => 'Euro', 
+                'human_name_en' => 'Euro',
+                'country' => 'European Union',
+                'flag' => null
+            ],
+        ];
     }
 }

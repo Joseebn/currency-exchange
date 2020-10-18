@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\WeeklyCurrencyRate;
 use App\Models\HistoricalCurrencyRate;
+use App\Models\BaseCoin;
 
 class CurrencyAcronym extends Model
 {
@@ -37,5 +38,11 @@ class CurrencyAcronym extends Model
     public function historicalRateCoin()
     {
         return $this->hasMany(HistoricalCurrencyRate::class, 'rate_coin_id', 'id');
+    }
+
+    public function baseCoin()
+    {
+        return $this->hasOne(BaseCoin::class, 'base_coin_id', 'id');
+
     }
 }
