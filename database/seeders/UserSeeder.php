@@ -19,7 +19,8 @@ class UserSeeder extends Seeder
         $user = User::create([
         	'username' => 'user_test', 
         	'password' => Hash::make('pass_test'), 
-        	'api_token' => Str::random(60)
+        	'api_token' => Str::random(60),
+            'status' => true
         ]);
     }
 }
