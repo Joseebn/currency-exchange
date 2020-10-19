@@ -9,8 +9,12 @@ use App\Models\HistoricalCurrencyRate;
 class CurrencyRateRepository implements CurrencyRateRepositoryInterface
 {
 
-	public function saveWeeklyCurrencyRate(Object $currencyExchange)
+	public function saveWeeklyCurrencyRate(Int $baseId, Int $rateId, Float $rateValue)
 	{
-		dd($currencyExchange);
+		WeeklyCurrencyRate::create([
+        	'base_coin_id' => $baseId,
+        	'rate_coin_id' => $rateId,
+        	'exchange_value' => $rateValue
+        ]);
 	}
 }
