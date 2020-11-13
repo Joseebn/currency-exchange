@@ -47,6 +47,7 @@ class CurrencyExchangeCommand extends Command
         if ($this->argument('type') == 'latest') {
             $this->currencyServices->saveLastCurrencyExchange($currencyExchange);
         }
+        // historical else
 
         return $currencyExchange->success;
     }

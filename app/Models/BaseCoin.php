@@ -22,4 +22,19 @@ class BaseCoin extends Model
     {
         return $this->belongsTo(CurrencyAcronym::class);
     }
+
+    public function scopeWhereAcronym($query)
+    {
+        return $query->select(
+                        'currency_acronyms.id',
+                        'currency_acronyms.acronym',
+                        'currency_acronyms.name',
+                        'currency_acronyms.human_name_sp',
+                        'currency_acronyms.human_name_pt',
+                        'currency_acronyms.human_name_en',
+                        'currency_acronyms.country',
+                        'currency_acronyms.flag'
+                    )
+                    ->join('currency_acronyms', 'currency_acronyms.id', '=', 'base_coins.base_coin_id');
+    }
 }

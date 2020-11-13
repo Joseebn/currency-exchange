@@ -8,13 +8,13 @@ use App\Models\BaseCoin;
 
 class CoinRepository implements CoinRepositoryInterface
 {
-	public function allCurrencyAcronyms()
-	{
-		return CurrencyAcronym::all();
-	}
-
 	public function allBaseCoins()
 	{
-		return BaseCoin::all();
+		return BaseCoin::whereAcronym()->get();
+	}
+
+	public function getCoinByAcronym(String $acronym)
+	{
+		return CurrencyAcronym::where('acronym', $acronym)->first();
 	}
 }
