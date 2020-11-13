@@ -20,7 +20,7 @@ class CreateHistoricalCurrencyRatesTable extends Migration
             $table->index('base_coin_id');
             $table->unsignedBigInteger('rate_coin_id');
             $table->foreign('rate_coin_id')->references('id')->on('currency_acronyms');
-            $table->decimal('exchange_value',9,3);
+            $table->decimal('exchange_value',20,12);
             $table->timestamps();
         });
     }

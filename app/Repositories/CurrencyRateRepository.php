@@ -14,7 +14,7 @@ class CurrencyRateRepository implements CurrencyRateRepositoryInterface
 		WeeklyCurrencyRate::create([
         	'base_coin_id' => $baseId,
         	'rate_coin_id' => $rateId,
-        	'exchange_value' => $rateValue
+        	'exchange_value' => round($rateValue, 12)
         ]);
 	}
 }

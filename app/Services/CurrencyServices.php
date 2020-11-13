@@ -45,15 +45,15 @@ class CurrencyServices
 		}
 	}
 
-	public function getCurrencyChanges($comparativeCoin, $coinCal, $rates) {
-
+	public function getCurrencyChanges($comparativeCoin, $coinCal, $rates)
+	{
 		$newRates[$comparativeCoin] = (1/$rates[$coinCal]);
 
 		foreach ($this->coins as $coin) {
 			if ($coin->acronym == $comparativeCoin || $coin->acronym == $coinCal) {
 				continue;
 			}
-			$newRates[$coin->acronym] = ($rates[$coinCal] * $newRates[$comparativeCoin]) / $rates[$coin->acronym];
+			$newRates[$coin->acronym] = $rates[$coin->acronym] / $rates[$coinCal];
 		}
 
 		return $newRates;
